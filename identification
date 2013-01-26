@@ -1,0 +1,15 @@
+rm auth.ml
+    
+echo "Identification :"
+
+echo "Nom d'utilisateur ?"
+
+read user
+		
+echo -e "let user = \"$user\" ;;\n" >> auth.ml
+
+echo "Jeton d'accès ?"
+		
+read access_token
+		
+echo -e "let access_token = \"$access_token\" ;;\n" >> auth.ml
