@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf8" http-equiv="Content-Type">
+<link rel="Start" href="social.html">
+<link rel="previous" href="Connect.html">
+<link rel="next" href="Json.html">
+<link rel="Up" href="social.html">
+<link title="Index of types" rel=Appendix href="social_types.html">
+<link title="Index of exceptions" rel=Appendix href="social_exceptions.html">
+<link title="Index of values" rel=Appendix href="social_values.html">
+<link title="Index of modules" rel=Appendix href="social_modules.html">
+<link title="Index of module types" rel=Appendix href="social_module_types.html">
+<link title="Date" rel="Chapter" href="Date.html">
+<link title="Social" rel="Chapter" href="Social.html">
+<link title="Tools" rel="Chapter" href="Tools.html">
+<link title="Clique" rel="Chapter" href="Clique.html">
+<link title="SocialNetwork" rel="Chapter" href="SocialNetwork.html">
+<link title="Connect" rel="Chapter" href="Connect.html">
+<link title="Fb" rel="Chapter" href="Fb.html">
+<link title="Json" rel="Chapter" href="Json.html">
+<link title="Auth" rel="Chapter" href="Auth.html">
+<link title="GetFb" rel="Chapter" href="GetFb.html">
+<link title="Facebook" rel="Chapter" href="Facebook.html"><link title="Définitions de types et accesseurs" rel="Section" href="#2_Dfinitionsdetypesetaccesseurs">
+<link title="Informations" rel="Subsection" href="#3_Informations">
+<link title="Contacts" rel="Subsection" href="#3_Contacts">
+<link title="{% \og Likes\fg  %}" rel="Subsection" href="#3_ogLikesfg">
+<link title="Commentaires" rel="Subsection" href="#3_Commentaires">
+<link title="Messages" rel="Subsection" href="#3_Messages">
+<title>Fb</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Connect.html" title="Connect">Previous</a>
+&nbsp;<a class="up" href="social.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Json.html" title="Json">Next</a>
+</div>
+<h1>Module <a href="type_Fb.html">Fb</a></h1>
+<pre><span class="keyword">module</span> Fb: <code class="code">sig</code> <a href="Fb.html">..</a> <code class="code">end</code></pre><div class="info">
+Types des objets Facebook<br>
+</div>
+<hr width="100%">
+<br>
+<h2 id="2_Dfinitionsdetypesetaccesseurs">Définitions de types et accesseurs</h2><br>
+<br>
+Ces types sont définis comme des enregistrements, mais on a choisi ici de 
+ masquer cela dans l'interface, afin d'obliger à utiliser les accesseurs et 
+ d'assurer la généricité du code.<br>
+<pre><span id="TYPEid"><span class="keyword">type</span> <code class="type"></code>id</span> = <code class="type">string</code> </pre>
+<div class="info">
+Type des identifiants.<br>
+</div>
+
+<pre><code><span id="TYPEgender"><span class="keyword">type</span> <code class="type"></code>gender</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTgender.Male"><span class="constructor">Male</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTgender.Female"><span class="constructor">Female</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTgender.Unknown"><span class="constructor">Unknown</span></span></code></td>
+<td class="typefieldcomment" align="left" valign="top" ><code>(*</code></td><td class="typefieldcomment" align="left" valign="top" >Genre d'un utilisateur.</td><td class="typefieldcomment" align="left" valign="bottom" ><code>*)</code></td>
+</tr></table>
+
+
+<br>
+<h3 id="3_Informations">Informations</h3><br>
+<pre><span id="TYPEinfo"><span class="keyword">type</span> <code class="type"></code>info</span> </pre>
+<div class="info">
+Informations prises en charge sur les utilisateurs. Il est important de noter
+que le genre n'est pas défini sur les pages publiques.<br>
+</div>
+
+<pre><span id="VALmake_info"><span class="keyword">val</span> make_info</span> : <code class="type">string -> <a href="Date.html#TYPEt">Date.t</a> -> <a href="Fb.html#TYPEgender">gender</a> -> <a href="Fb.html#TYPEinfo">info</a></code></pre><pre><span id="VALname"><span class="keyword">val</span> name</span> : <code class="type"><a href="Fb.html#TYPEinfo">info</a> -> string</code></pre><pre><span id="VALbirthday"><span class="keyword">val</span> birthday</span> : <code class="type"><a href="Fb.html#TYPEinfo">info</a> -> <a href="Date.html#TYPEt">Date.t</a></code></pre><pre><span id="VALgender"><span class="keyword">val</span> gender</span> : <code class="type"><a href="Fb.html#TYPEinfo">info</a> -> <a href="Fb.html#TYPEgender">gender</a></code></pre><pre><span id="VALage"><span class="keyword">val</span> age</span> : <code class="type"><a href="Fb.html#TYPEinfo">info</a> -> int</code></pre><br>
+<h3 id="3_Contacts">Contacts</h3><br>
+<pre><span id="TYPEcontact"><span class="keyword">type</span> <code class="type"></code>contact</span> </pre>
+<div class="info">
+Type d'un ami.<br>
+</div>
+
+<pre><span id="VALmake_contact"><span class="keyword">val</span> make_contact</span> : <code class="type">string -> <a href="Fb.html#TYPEid">id</a> -> <a href="Fb.html#TYPEcontact">contact</a></code></pre><pre><span id="VALf_name"><span class="keyword">val</span> f_name</span> : <code class="type"><a href="Fb.html#TYPEcontact">contact</a> -> string</code></pre><pre><span id="VALf_id"><span class="keyword">val</span> f_id</span> : <code class="type"><a href="Fb.html#TYPEcontact">contact</a> -> <a href="Fb.html#TYPEid">id</a></code></pre><br>
+<h3 id="3_ogLikesfg"></h3><br>
+<pre><span id="TYPElike"><span class="keyword">type</span> <code class="type"></code>like</span> </pre>
+<div class="info">
+Type d'un  Facebook.<br>
+</div>
+
+<pre><span id="VALmake_like"><span class="keyword">val</span> make_like</span> : <code class="type"><a href="Fb.html#TYPEid">id</a> -> string -> string -> <a href="Date.html#TYPEt">Date.t</a> -> <a href="Fb.html#TYPElike">like</a></code></pre><pre><span id="VALl_id"><span class="keyword">val</span> l_id</span> : <code class="type"><a href="Fb.html#TYPElike">like</a> -> <a href="Fb.html#TYPEid">id</a></code></pre><pre><span id="VALl_name"><span class="keyword">val</span> l_name</span> : <code class="type"><a href="Fb.html#TYPElike">like</a> -> string</code></pre><pre><span id="VALcat"><span class="keyword">val</span> cat</span> : <code class="type"><a href="Fb.html#TYPElike">like</a> -> string</code></pre><pre><span id="VALsince"><span class="keyword">val</span> since</span> : <code class="type"><a href="Fb.html#TYPElike">like</a> -> <a href="Date.html#TYPEt">Date.t</a></code></pre><br>
+<h3 id="3_Commentaires">Commentaires</h3><br>
+<pre><span id="TYPEcomment"><span class="keyword">type</span> <code class="type"></code>comment</span> </pre>
+<div class="info">
+Type d'un commentaire.<br>
+</div>
+
+<pre><span id="VALmake_comment"><span class="keyword">val</span> make_comment</span> : <code class="type"><a href="Fb.html#TYPEid">id</a> -> string -> <a href="Date.html#TYPEt">Date.t</a> -> <a href="Fb.html#TYPEcontact">contact</a> -> int -> <a href="Fb.html#TYPEcomment">comment</a></code></pre><pre><span id="VALc_id"><span class="keyword">val</span> c_id</span> : <code class="type"><a href="Fb.html#TYPEcomment">comment</a> -> <a href="Fb.html#TYPEid">id</a></code></pre><pre><span id="VALc_content"><span class="keyword">val</span> c_content</span> : <code class="type"><a href="Fb.html#TYPEcomment">comment</a> -> string</code></pre><pre><span id="VALc_date"><span class="keyword">val</span> c_date</span> : <code class="type"><a href="Fb.html#TYPEcomment">comment</a> -> <a href="Date.html#TYPEt">Date.t</a></code></pre><pre><span id="VALc_from"><span class="keyword">val</span> c_from</span> : <code class="type"><a href="Fb.html#TYPEcomment">comment</a> -> <a href="Fb.html#TYPEcontact">contact</a></code></pre><pre><span id="VALc_like"><span class="keyword">val</span> c_like</span> : <code class="type"><a href="Fb.html#TYPEcomment">comment</a> -> int</code></pre><br>
+<h3 id="3_Messages">Messages</h3><br>
+<pre><span id="TYPEmessage"><span class="keyword">type</span> <code class="type"></code>message</span> </pre>
+<div class="info">
+Type d'un message.<br>
+</div>
+
+<pre><span id="VALmake_message"><span class="keyword">val</span> make_message</span> : <code class="type"><a href="Fb.html#TYPEid">id</a> -><br>       string -><br>       <a href="Date.html#TYPEt">Date.t</a> -><br>       <a href="Fb.html#TYPEcontact">contact</a> -><br>       <a href="Fb.html#TYPEcontact">contact</a> list -> <a href="Fb.html#TYPEcomment">comment</a> list -> <a href="Fb.html#TYPEcontact">contact</a> list -> int -> <a href="Fb.html#TYPEmessage">message</a></code></pre><pre><span id="VALm_id"><span class="keyword">val</span> m_id</span> : <code class="type"><a href="Fb.html#TYPEmessage">message</a> -> <a href="Fb.html#TYPEid">id</a></code></pre><pre><span id="VALcontent"><span class="keyword">val</span> content</span> : <code class="type"><a href="Fb.html#TYPEmessage">message</a> -> string</code></pre><pre><span id="VALdate"><span class="keyword">val</span> date</span> : <code class="type"><a href="Fb.html#TYPEmessage">message</a> -> <a href="Date.html#TYPEt">Date.t</a></code></pre><pre><span id="VALfrom"><span class="keyword">val</span> from</span> : <code class="type"><a href="Fb.html#TYPEmessage">message</a> -> <a href="Fb.html#TYPEcontact">contact</a></code></pre><pre><span id="VALfto"><span class="keyword">val</span> fto</span> : <code class="type"><a href="Fb.html#TYPEmessage">message</a> -> <a href="Fb.html#TYPEcontact">contact</a> list</code></pre><pre><span id="VALcomments"><span class="keyword">val</span> comments</span> : <code class="type"><a href="Fb.html#TYPEmessage">message</a> -> <a href="Fb.html#TYPEcomment">comment</a> list</code></pre><pre><span id="VALm_likes"><span class="keyword">val</span> m_likes</span> : <code class="type"><a href="Fb.html#TYPEmessage">message</a> -> <a href="Fb.html#TYPEcontact">contact</a> list</code></pre><pre><span id="VALnb_com"><span class="keyword">val</span> nb_com</span> : <code class="type"><a href="Fb.html#TYPEmessage">message</a> -> int</code></pre><pre><span id="VALgender_to_string"><span class="keyword">val</span> gender_to_string</span> : <code class="type"><a href="Fb.html#TYPEgender">gender</a> -> string</code></pre><div class="info">
+<h2 id="2_Fonctionsdimpression">Fonctions d'impression</h2><br>
+</div>
+<pre><span id="VALprint_info"><span class="keyword">val</span> print_info</span> : <code class="type"><a href="Fb.html#TYPEinfo">info</a> -> unit</code></pre><pre><span id="VALprint_contact"><span class="keyword">val</span> print_contact</span> : <code class="type"><a href="Fb.html#TYPEcontact">contact</a> -> unit</code></pre><pre><span id="VALprint_comment"><span class="keyword">val</span> print_comment</span> : <code class="type"><a href="Fb.html#TYPEcomment">comment</a> -> unit</code></pre><pre><span id="VALprint_message"><span class="keyword">val</span> print_message</span> : <code class="type"><a href="Fb.html#TYPEmessage">message</a> -> unit</code></pre><pre><span id="VALprint_like"><span class="keyword">val</span> print_like</span> : <code class="type"><a href="Fb.html#TYPElike">like</a> -> unit</code></pre><pre><span id="VALprint_name"><span class="keyword">val</span> print_name</span> : <code class="type">string -> unit</code></pre><pre><span id="VALprint_date"><span class="keyword">val</span> print_date</span> : <code class="type"><a href="Date.html#TYPEt">Date.t</a> -> unit</code></pre><pre><span id="VALprint_gender"><span class="keyword">val</span> print_gender</span> : <code class="type"><a href="Fb.html#TYPEgender">gender</a> -> unit</code></pre></body></html>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf8" http-equiv="Content-Type">
+<link rel="Start" href="social.html">
+<link rel="next" href="Social.T.GetObj.html">
+<link rel="Up" href="Social.T.html">
+<link title="Index of types" rel=Appendix href="social_types.html">
+<link title="Index of exceptions" rel=Appendix href="social_exceptions.html">
+<link title="Index of values" rel=Appendix href="social_values.html">
+<link title="Index of modules" rel=Appendix href="social_modules.html">
+<link title="Index of module types" rel=Appendix href="social_module_types.html">
+<link title="Date" rel="Chapter" href="Date.html">
+<link title="Social" rel="Chapter" href="Social.html">
+<link title="Tools" rel="Chapter" href="Tools.html">
+<link title="Clique" rel="Chapter" href="Clique.html">
+<link title="SocialNetwork" rel="Chapter" href="SocialNetwork.html">
+<link title="Connect" rel="Chapter" href="Connect.html">
+<link title="Fb" rel="Chapter" href="Fb.html">
+<link title="Json" rel="Chapter" href="Json.html">
+<link title="Auth" rel="Chapter" href="Auth.html">
+<link title="GetFb" rel="Chapter" href="GetFb.html">
+<link title="Facebook" rel="Chapter" href="Facebook.html"><title>Social.T.Obj</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="Social.T.html" title="Social.T">Up</a>
+&nbsp;<a class="post" href="Social.T.GetObj.html" title="Social.T.GetObj">Next</a>
+</div>
+<h1>Module <a href="type_Social.T.Obj.html">Social.T.Obj</a></h1>
+<pre><span class="keyword">module</span> Obj: <code class="code">sig</code> <a href="Social.T.Obj.html">..</a> <code class="code">end</code></pre><hr width="100%">
+<pre><span id="TYPEid"><span class="keyword">type</span> <code class="type"></code>id</span> = <code class="type">string</code> </pre>
+
+<pre><code><span id="TYPEgender"><span class="keyword">type</span> <code class="type"></code>gender</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTgender.Male"><span class="constructor">Male</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTgender.Female"><span class="constructor">Female</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTgender.Unknown"><span class="constructor">Unknown</span></span></code></td>
+
+</tr></table>
+
+
+<pre><span id="TYPEinfo"><span class="keyword">type</span> <code class="type"></code>info</span> </pre>
+
+<pre><span id="VALmake_info"><span class="keyword">val</span> make_info</span> : <code class="type">string -> <a href="Date.html#TYPEt">Date.t</a> -> <a href="Social.T.Obj.html#TYPEgender">gender</a> -> <a href="Social.T.Obj.html#TYPEinfo">info</a></code></pre><pre><span id="VALname"><span class="keyword">val</span> name</span> : <code class="type"><a href="Social.T.Obj.html#TYPEinfo">info</a> -> string</code></pre><pre><span id="VALbirthday"><span class="keyword">val</span> birthday</span> : <code class="type"><a href="Social.T.Obj.html#TYPEinfo">info</a> -> <a href="Date.html#TYPEt">Date.t</a></code></pre><pre><span id="VALgender"><span class="keyword">val</span> gender</span> : <code class="type"><a href="Social.T.Obj.html#TYPEinfo">info</a> -> <a href="Social.T.Obj.html#TYPEgender">gender</a></code></pre><pre><span id="VALage"><span class="keyword">val</span> age</span> : <code class="type"><a href="Social.T.Obj.html#TYPEinfo">info</a> -> int</code></pre><pre><span id="TYPEcontact"><span class="keyword">type</span> <code class="type"></code>contact</span> </pre>
+
+<pre><span id="VALmake_contact"><span class="keyword">val</span> make_contact</span> : <code class="type">string -> <a href="Social.T.Obj.html#TYPEid">id</a> -> <a href="Social.T.Obj.html#TYPEcontact">contact</a></code></pre><pre><span id="VALf_name"><span class="keyword">val</span> f_name</span> : <code class="type"><a href="Social.T.Obj.html#TYPEcontact">contact</a> -> string</code></pre><pre><span id="VALf_id"><span class="keyword">val</span> f_id</span> : <code class="type"><a href="Social.T.Obj.html#TYPEcontact">contact</a> -> <a href="Social.T.Obj.html#TYPEid">id</a></code></pre><pre><span id="TYPElike"><span class="keyword">type</span> <code class="type"></code>like</span> </pre>
+
+<pre><span id="VALmake_like"><span class="keyword">val</span> make_like</span> : <code class="type"><a href="Social.T.Obj.html#TYPEid">id</a> -> string -> string -> <a href="Date.html#TYPEt">Date.t</a> -> <a href="Social.T.Obj.html#TYPElike">like</a></code></pre><pre><span id="VALl_id"><span class="keyword">val</span> l_id</span> : <code class="type"><a href="Social.T.Obj.html#TYPElike">like</a> -> <a href="Social.T.Obj.html#TYPEid">id</a></code></pre><pre><span id="VALl_name"><span class="keyword">val</span> l_name</span> : <code class="type"><a href="Social.T.Obj.html#TYPElike">like</a> -> string</code></pre><pre><span id="VALcat"><span class="keyword">val</span> cat</span> : <code class="type"><a href="Social.T.Obj.html#TYPElike">like</a> -> string</code></pre><pre><span id="VALsince"><span class="keyword">val</span> since</span> : <code class="type"><a href="Social.T.Obj.html#TYPElike">like</a> -> <a href="Date.html#TYPEt">Date.t</a></code></pre><pre><span id="TYPEcomment"><span class="keyword">type</span> <code class="type"></code>comment</span> </pre>
+
+<pre><span id="VALmake_comment"><span class="keyword">val</span> make_comment</span> : <code class="type"><a href="Social.T.Obj.html#TYPEid">id</a> -><br>       string -> <a href="Date.html#TYPEt">Date.t</a> -> <a href="Social.T.Obj.html#TYPEcontact">contact</a> -> int -> <a href="Social.T.Obj.html#TYPEcomment">comment</a></code></pre><pre><span id="VALc_id"><span class="keyword">val</span> c_id</span> : <code class="type"><a href="Social.T.Obj.html#TYPEcomment">comment</a> -> <a href="Social.T.Obj.html#TYPEid">id</a></code></pre><pre><span id="VALc_content"><span class="keyword">val</span> c_content</span> : <code class="type"><a href="Social.T.Obj.html#TYPEcomment">comment</a> -> string</code></pre><pre><span id="VALc_date"><span class="keyword">val</span> c_date</span> : <code class="type"><a href="Social.T.Obj.html#TYPEcomment">comment</a> -> <a href="Date.html#TYPEt">Date.t</a></code></pre><pre><span id="VALc_from"><span class="keyword">val</span> c_from</span> : <code class="type"><a href="Social.T.Obj.html#TYPEcomment">comment</a> -> <a href="Social.T.Obj.html#TYPEcontact">contact</a></code></pre><pre><span id="VALc_like"><span class="keyword">val</span> c_like</span> : <code class="type"><a href="Social.T.Obj.html#TYPEcomment">comment</a> -> int</code></pre><pre><span id="TYPEmessage"><span class="keyword">type</span> <code class="type"></code>message</span> </pre>
+
+<pre><span id="VALmake_message"><span class="keyword">val</span> make_message</span> : <code class="type"><a href="Social.T.Obj.html#TYPEid">id</a> -><br>       string -><br>       <a href="Date.html#TYPEt">Date.t</a> -><br>       <a href="Social.T.Obj.html#TYPEcontact">contact</a> -><br>       <a href="Social.T.Obj.html#TYPEcontact">contact</a> list -><br>       <a href="Social.T.Obj.html#TYPEcomment">comment</a> list -><br>       <a href="Social.T.Obj.html#TYPEcontact">contact</a> list -> int -> <a href="Social.T.Obj.html#TYPEmessage">message</a></code></pre><pre><span id="VALm_id"><span class="keyword">val</span> m_id</span> : <code class="type"><a href="Social.T.Obj.html#TYPEmessage">message</a> -> <a href="Social.T.Obj.html#TYPEid">id</a></code></pre><pre><span id="VALcontent"><span class="keyword">val</span> content</span> : <code class="type"><a href="Social.T.Obj.html#TYPEmessage">message</a> -> string</code></pre><pre><span id="VALdate"><span class="keyword">val</span> date</span> : <code class="type"><a href="Social.T.Obj.html#TYPEmessage">message</a> -> <a href="Date.html#TYPEt">Date.t</a></code></pre><pre><span id="VALfrom"><span class="keyword">val</span> from</span> : <code class="type"><a href="Social.T.Obj.html#TYPEmessage">message</a> -> <a href="Social.T.Obj.html#TYPEcontact">contact</a></code></pre><pre><span id="VALfto"><span class="keyword">val</span> fto</span> : <code class="type"><a href="Social.T.Obj.html#TYPEmessage">message</a> -> <a href="Social.T.Obj.html#TYPEcontact">contact</a> list</code></pre><pre><span id="VALcomments"><span class="keyword">val</span> comments</span> : <code class="type"><a href="Social.T.Obj.html#TYPEmessage">message</a> -> <a href="Social.T.Obj.html#TYPEcomment">comment</a> list</code></pre><pre><span id="VALm_likes"><span class="keyword">val</span> m_likes</span> : <code class="type"><a href="Social.T.Obj.html#TYPEmessage">message</a> -> <a href="Social.T.Obj.html#TYPEcontact">contact</a> list</code></pre><pre><span id="VALnb_com"><span class="keyword">val</span> nb_com</span> : <code class="type"><a href="Social.T.Obj.html#TYPEmessage">message</a> -> int</code></pre><pre><span id="VALprint_info"><span class="keyword">val</span> print_info</span> : <code class="type"><a href="Social.T.Obj.html#TYPEinfo">info</a> -> unit</code></pre><pre><span id="VALprint_contact"><span class="keyword">val</span> print_contact</span> : <code class="type"><a href="Social.T.Obj.html#TYPEcontact">contact</a> -> unit</code></pre><pre><span id="VALprint_comment"><span class="keyword">val</span> print_comment</span> : <code class="type"><a href="Social.T.Obj.html#TYPEcomment">comment</a> -> unit</code></pre><pre><span id="VALprint_message"><span class="keyword">val</span> print_message</span> : <code class="type"><a href="Social.T.Obj.html#TYPEmessage">message</a> -> unit</code></pre><pre><span id="VALprint_like"><span class="keyword">val</span> print_like</span> : <code class="type"><a href="Social.T.Obj.html#TYPElike">like</a> -> unit</code></pre><pre><span id="VALprint_name"><span class="keyword">val</span> print_name</span> : <code class="type">string -> unit</code></pre><pre><span id="VALprint_date"><span class="keyword">val</span> print_date</span> : <code class="type"><a href="Date.html#TYPEt">Date.t</a> -> unit</code></pre><pre><span id="VALprint_gender"><span class="keyword">val</span> print_gender</span> : <code class="type"><a href="Social.T.Obj.html#TYPEgender">gender</a> -> unit</code></pre></body></html>
