@@ -11,6 +11,9 @@
   (*  library, see the LICENSE file for more information.                   *)
   (**************************************************************************)
 
+(** Calcul d'une clique maximale d'un graphe défini par une liste de sommets 
+    et des listes d'adjacence. *)
+
 val clique : 'a list -> 'a list list -> 'a list
 
 val clique_smpl : 'a list -> 'a list list -> 'a list

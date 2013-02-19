@@ -31,7 +31,7 @@ exception Fail of string*Yojson.Safe.json*string
 
 exception Private of int
 (** Parfois, les commentaires d'un message sont configurés de telle
- manière qu'on n'y a pas accès, mais qu' en revanche leur nombre
+ manière qu'on n'y aie pas accès, mais qu' en revanche leur nombre
  est accessible. Cette exception permet de réccupérer ce nombre
  et de l'intéger dans le message (champ [nb_com]). *)
 

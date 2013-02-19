@@ -68,39 +68,45 @@
 #
 # The Caml sources (including camlyacc and camllex source files)
 
-SOURCES = date.mli date.ml social.mli tools.mli tools.ml clique.mli clique.ml connect.mli connect.ml fb.mli fb.ml json.mli json.ml auth.mli auth.ml getfb.mli getfb.ml getfb_public.ml socialnetwork.mli socialnetwork.ml
+SOURCES = $(SOURCESMLI) $(SOURCESML)
+
+SOURCESMLI = date.mli social.mli tools.mli clique.mli socialNetwork.mli connect.mli fb.mli json.mli auth.mli getFb.mli facebook.mli
+
+SOURCESML = date.ml tools.ml clique.ml socialNetwork.ml connect.ml fb.ml json.ml auth.ml getFb.ml getFbPublic.ml facebook.ml
 
 # The executable file to generate (default a.out under Unix)
 
-EXEC = pfav
+EXEC = social
 
 
 ########################## Advanced user's variables #####################
 #
 # The Caml compilers.
 # You may fix here the path to access the Caml compiler on your machine
-CAMLC = ocamlc $(REPO)
-CAMLOPT = ocamlopt $(REPO)
-CAMLTOP = ocamlmktop $(REPO)
+CAMLC = ocamlfind ocamlc
+CAMLOPT = ocamlfind ocamlopt
+CAMLTOP = ocamlfind ocamlmktop 
 CAMLDEP = ocamldep
 CAMLLEX = ocamllex
 CAMLYACC = ocamlyacc
+CAMLDOC = ocamlfind ocamldoc
 
 # The list of Caml libraries needed by the program
 # For instance:
 # LIBS=$(WITHGRAPHICS) $(WITHUNIX) $(WITHSTR) $(WITHNUMS) $(WITHTHREADS)\
 # $(WITHDBM)
 
-LIBS=$(WITHUNIX) $(WITHSTR) $(LIBPERSO)
+LIB=$(REPO) $(WITHUNIX) $(WITHSTR) $(WITHJSON) $(WITHHTTP)
 #$(WITHCURL) $(WITHJSON)
 
 # Should be set to -custom if you use any of the libraries above
 # or if any C code have to be linked with your program
 # (irrelevant for ocamlopt)
 
-CUSTOM=-custom
+CUSTOM=
+# CUSTOM=-custom
 
-LIBPERSO = libs.cma
+REPO = -package netclient,netsys,netstring,equeue,easy-format,biniou,yojson
 
 # Default setting of the WITH* variables. Should be changed if your
 # local libraries are not found by the compiler.
@@ -116,11 +122,10 @@ WITHTHREADS =threads.cma -cclib -lthreads
 
 WITHDBM =dbm.cma -cclib -lmldbm -cclib -lndbm
 
-#WITHCURL = curl.a curl.cma
+WITHHTTP = bigarray.cma netsys_oothr.cma netsys.cma netstring.cma equeue.cma netclient.cma
 
-#WITHJSON = easy_format.cmo biniou.cma yojson.cmo
+WITHJSON = easy_format.cma biniou.cma
 
-REPO = -I +easy-format -I +biniou -I +yojson -I +curl
 ################ End of user's variables #####################
 
 
@@ -129,15 +134,15 @@ REPO = -I +easy-format -I +biniou -I +yojson -I +curl
 ################ Nothing to set up or fix here
 ##############################################################
 
-all: configure depend $(EXEC)
+all: depend $(EXEC)
 
-#opt : configure $(EXEC).opt
+opt : $(EXEC).opt
 
-lib : configure $(EXEC).cma
+lib : $(EXEC).cma
 
-top : configure $(EXEC)_top
+top : $(EXEC)_top
 
-configure : $(LIBPERSO)
+#configure : $(LIBPERSO)
 
 #ocamlc -custom other options graphics.cma other files -cclib -lgraphics -cclib -lX11
 #ocamlc -thread -custom other options threads.cma other files -cclib -lthreads
@@ -150,33 +155,32 @@ SOURCES1 = $(SOURCES:.mly=.ml)
 SOURCES2 = $(SOURCES1:.mll=.ml)
 OBJS = $(SOURCES2:.ml=.cmo)
 OPTOBJS = $(SOURCES2:.ml=.cmx)
-
-$(LIBPERSO) : 
-	$(CAMLC) $(CUSTOM) -a -o $(LIBPERSO) curl.cma easy_format.cmo biniou.cma yojson.cmo
+LIBS = $(LIB) yojson.cmo
+LIBSOPT = $(LIB:.cma=.cmxa) yojson.cmx
 
 $(EXEC): $(OBJS)
 	$(CAMLC) $(CUSTOM) -o $(EXEC) $(LIBS) $(OBJS)
 
 $(EXEC).opt: $(OPTOBJS)
-	$(CAMLOPT) -o $(EXEC).opt $(LIBS:.cma=.cmxa) $(OPTOBJS)
+	$(CAMLOPT) -o $(EXEC).opt $(LIBSOPT) $(OPTOBJS)
 
 $(EXEC).cma: $(OBJS)
 	$(CAMLC) $(CUSTOM) -linkall -a -o $(EXEC).cma $(LIBS) $(OBJS)
 
 $(EXEC)_top: $(EXEC).cma
-	$(CAMLTOP) $(EXEC).cma -o $(EXEC)_top
+	$(CAMLTOP) $(LIBS) $(EXEC).cma -o $(EXEC)_top
 
 .SUFFIXES:
 .SUFFIXES: .ml .mli .cmo .cmi .cmx .mll .mly
 
 .ml.cmo:
-	$(CAMLC) -c $<
+	$(CAMLC) -c $(LIBS) $<
 
 .mli.cmi:
-	$(CAMLC) -c $<
+	$(CAMLC) -c $(LIBS) $<
 
 .ml.cmx:
-	$(CAMLOPT) -c $<
+	$(CAMLOPT) -c $(LIBSOPT) $<
 
 .mll.cmo:
 	$(CAMLLEX) $<
@@ -207,14 +211,38 @@ $(EXEC)_top: $(EXEC).cma
 	$(CAMLYACC) $<
 
 clean:
-	rm -f *.cm[iox] *~ .*~ #*#
+	rm -f *.cm[iox] *~ .*~ *.o #*#
 	rm -f $(EXEC)
 	rm -f $(EXEC).opt
+	rm -f $(EXEC).cma
 
 .depend: $(SOURCES2)
 	$(CAMLDEP) *.mli *.ml > .depend
 
 depend: $(SOURCES2)
 	$(CAMLDEP) *.mli *.ml > .depend
+
+doctex: $(OBJS)
+	$(CAMLDOC) $(REPO) $(SOURCESMLI) -noheader -notrailer -sepfiles -latex -o src.tex
+	mv Doc/Tex/$(EXEC).tex .
+	pdflatex $(EXEC).tex
+	mv $(EXEC).pdf Doc
+	mv *.{tex,sty} Doc/Tex
+	rm *.{log,out,aux}
+
+dochtml:$(OBJS)
+	$(CAMLDOC) $(REPO) $(SOURCESMLI) -short-functors -html -charset utf8 -o social
+	mv *.html Doc/Html
+	mv style.css Doc/Html
+
+ident: 
+	rm auth.ml
+	echo "Nom d'utilisateur ?"
+	read USER
+	echo -e "let user = \"\" ;;\n" >> auth.ml
+	echo "Jeton d'accès ?"
+	read access_token
+	echo -e "let access_token = \"$access_token\" ;;\n" >> auth.ml
+
 
 include .depend

@@ -1,5 +1,5 @@
 (*Librairies*)
-open Socialnetwork.Facebook;;
+open Facebook.Priv;;
 
 open Obj;;
 

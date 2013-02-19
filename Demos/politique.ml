@@ -1,4 +1,4 @@
-open Socialnetwork.Facebook2;;
+open Facebook.Pub;;
 
 open Obj;;
 
